@@ -92,9 +92,7 @@ var main = function () {
       new Timeline(salt).show();
 
       if (e.x >= wrist.x+wristRect.left && e.y >= wrist.y+wristRect.top && e.x <= wrist.x+wristRect.right && e.y <= wrist.y+wristRect.bottom) {
-        var voice = game.assets['death-cry.wav'].clone();
-        // voice.volume = 1;
-        voice.play();
+        game.assets['death-cry.wav'].clone().play();
 
         var wristLine = new Timeline(wrist);
         wristLine.moveBy(-25, -2, 2);
