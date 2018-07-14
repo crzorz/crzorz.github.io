@@ -93,7 +93,7 @@ var main = function () {
 
       if (e.x >= wrist.x+wristRect.left && e.y >= wrist.y+wristRect.top && e.x <= wrist.x+wristRect.right && e.y <= wrist.y+wristRect.bottom) {
         var voiced = game.assets['death-cry.wav'].clone();
-        voiced.volume = 1;
+        // voiced.volume = 1;
         voiced.play();
 
         var wristLine = new Timeline(wrist);
