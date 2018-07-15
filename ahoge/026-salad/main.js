@@ -73,9 +73,9 @@ var main = function () {
     var userAgent = window.navigator.userAgent.toLowerCase();
     if (userAgent.indexOf('msie') >= 0 ||
       userAgent.indexOf('trident') >= 0) {
-      var voice = game.assets['death-cry.mp3'].clone();
+      var voice = game.assets['death-cry.mp3'];
     } else {
-      var voice = game.assets['death-cry.wav'].clone();
+      var voice = game.assets['death-cry.wav'];
     }
 
     var scene = new Scene();
@@ -100,9 +100,9 @@ var main = function () {
       new Timeline(salt).show();
 
       if (e.x >= wrist.x+wristRect.left && e.y >= wrist.y+wristRect.top && e.x <= wrist.x+wristRect.right && e.y <= wrist.y+wristRect.bottom) {
-        voice = voice.clone();
         voice.volume = 1;
         voice.play();
+        voice = voice.clone();
 
         var wristLine = new Timeline(wrist);
         wristLine.moveBy(-25, -2, 2);
