@@ -73,9 +73,9 @@ var main = function () {
     var userAgent = window.navigator.userAgent.toLowerCase();
     if (userAgent.indexOf('msie') >= 0 ||
       userAgent.indexOf('trident') >= 0) {
-      var voice = game.assets['death-cry.mp3'];
+      var voice = game.assets['death-cry.mp3'].clone();
     } else {
-      var voice = game.assets['death-cry.wav'];
+      var voice = game.assets['death-cry.wav'].clone();
     }
 
     var scene = new Scene();
