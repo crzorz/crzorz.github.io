@@ -1,5 +1,5 @@
+(function () {
 enchant();
-
 
 var SaveData = {
   init: function () {
@@ -37,7 +37,7 @@ var main = function () {
   var game = new Core(640, 480);
   game.fps = 30;
   game.scale = 1;
-  game.preload('wrist.png', 'salt-hand.png', 'salt.png', 'death-cry.wav', 'jam.png', 'jam-stage2.png', 'jam-stage3.png');
+  game.preload('wrist.png', 'salt-hand.png', 'salt.png', 'death-cry.wav', 'death-cry.mp3', 'jam.png', 'jam-stage2.png', 'jam-stage3.png');
 
   game.addEventListener('load', function () {
     var wrist = new Sprite(248, 512);
@@ -70,6 +70,14 @@ var main = function () {
       jam.image = game.assets['jam.png'];
     }
 
+    var userAgent = window.navigator.userAgent.toLowerCase();
+    if (userAgent.indexOf('msie') >= 0 ||
+      userAgent.indexOf('trident') >= 0) {
+      var voice = game.assets['death-cry.mp3'];
+    } else {
+      var voice = game.assets['death-cry.wav'];
+    }
+
     var scene = new Scene();
     scene.addChild(jam);
     scene.addChild(wrist);
@@ -92,7 +100,9 @@ var main = function () {
       new Timeline(salt).show();
 
       if (e.x >= wrist.x+wristRect.left && e.y >= wrist.y+wristRect.top && e.x <= wrist.x+wristRect.right && e.y <= wrist.y+wristRect.bottom) {
-        game.assets['death-cry.wav'].clone().play();
+        voice = voice.clone();
+        voice.volume = 1;
+        voice.play();
 
         var wristLine = new Timeline(wrist);
         wristLine.moveBy(-25, -2, 2);
@@ -127,3 +137,4 @@ var main = function () {
 
 SaveData.init();
 window.addEventListener('load', main);
+})();
