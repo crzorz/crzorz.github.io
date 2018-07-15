@@ -100,7 +100,7 @@ var main = function () {
       new Timeline(salt).show();
 
       if (e.x >= wrist.x+wristRect.left && e.y >= wrist.y+wristRect.top && e.x <= wrist.x+wristRect.right && e.y <= wrist.y+wristRect.bottom) {
-        voice.volume = 1;
+        // voice.volume = 1;
         voice.play();
         voice = voice.clone();
 
