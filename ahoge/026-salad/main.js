@@ -33,11 +33,20 @@ function getDiff(date1Str, date2Str) {
   return ++daysDiff;
 }
 
+
 var main = function () {
+  var userAgent = window.navigator.userAgent.toLowerCase();
+  if (userAgent.indexOf('msie') >= 0 ||
+    userAgent.indexOf('trident') >= 0) {
+    var VOICE = 'death-cry.mp3';
+  } else {
+    var VOICE = 'death-cry.wav';
+  }
+
   var game = new Core(640, 480);
   game.fps = 30;
   game.scale = 1;
-  game.preload('wrist.png', 'salt-hand.png', 'salt.png', 'death-cry.wav', 'death-cry.mp3', 'jam.png', 'jam-stage2.png', 'jam-stage3.png');
+  game.preload('wrist.png', 'salt-hand.png', 'salt.png', 'jam.png', 'jam-stage2.png', 'jam-stage3.png', VOICE);
 
   game.addEventListener('load', function () {
     var wrist = new Sprite(248, 512);
@@ -70,14 +79,6 @@ var main = function () {
       jam.image = game.assets['jam.png'];
     }
 
-    var userAgent = window.navigator.userAgent.toLowerCase();
-    if (userAgent.indexOf('msie') >= 0 ||
-      userAgent.indexOf('trident') >= 0) {
-      var voice = game.assets['death-cry.mp3'];
-    } else {
-      var voice = game.assets['death-cry.wav'];
-    }
-
     var scene = new Scene();
     scene.addChild(jam);
     scene.addChild(wrist);
@@ -100,9 +101,7 @@ var main = function () {
       new Timeline(salt).show();
 
       if (e.x >= wrist.x+wristRect.left && e.y >= wrist.y+wristRect.top && e.x <= wrist.x+wristRect.right && e.y <= wrist.y+wristRect.bottom) {
-        // voice.volume = 1;
-        voice.play();
-        voice = voice.clone();
+        game.assets[VOICE].clone().play();
 
         var wristLine = new Timeline(wrist);
         wristLine.moveBy(-25, -2, 2);
@@ -132,6 +131,7 @@ var main = function () {
       haveSalt.moveTo(e.pageX - haveSalt.width/12, e.pageY - haveSalt.height/1.6);
     });
   });
+
   game.start();
 };
 
