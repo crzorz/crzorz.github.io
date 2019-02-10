@@ -31,10 +31,6 @@ function main () {
       lbBottom.tl.moveTo(0, game.height-lbBottom.height, 10);
 
       var blenderCupLine = new Timeline(blenderCup);
-      // for (var i = 0; i < 20; i++) {
-      //   blenderCupLine.moveBy(-6, 0, 1);
-      //   blenderCupLine.moveBy(6, 0, 1);
-      // }
 
       var blast = new Sprite(164, 410);
       blast.image = game.assets['blast.png'];
@@ -65,7 +61,6 @@ function main () {
       blenderCup.tl.moveBy(0, -20, 70);
       blenderCup.tl.moveBy(0, -100, 50);
 
-      //blenderCupLine.moveTo(blenderCup.position.x, -blenderCup.height, 20);
     });
 
     var surface = new Surface(640, 60);
@@ -89,7 +84,7 @@ function main () {
 
     var bgmLoop = setInterval(function () {
       game.assets['bgm-peep.mp3'].play();
-    }, 20);
+    }, 20000);
   });
 
   game.start();
