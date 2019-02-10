@@ -82,6 +82,7 @@ function main () {
     scene.addChild(blenderBtn4);
     game.replaceScene(scene);
 
+    game.assets['bgm-peep.mp3'].play();
     var bgmLoop = setInterval(function () {
       game.assets['bgm-peep.mp3'].play();
     }, 20000);
